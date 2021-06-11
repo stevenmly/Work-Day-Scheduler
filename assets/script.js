@@ -1,5 +1,4 @@
-var tasks = {};
-
+// function to check whether current hour is in the past, present, or future
 var checkTime = function() {
   $( ".row" ).each(function( index ) {
      var hourText = $(this).find(".hour").text();
@@ -17,6 +16,7 @@ var checkTime = function() {
   });
 };
 
+// function to display current date
 var displayDate = function() {
   var now = moment().format("dddd, MMMM Do YYYY");
   var date = $(".jumbotron")
@@ -27,19 +27,27 @@ var displayDate = function() {
   date.append(today);
 }
 
-// task text was clicked
-$(".description").on("click", "div", function() {
-  var text = $(this)
-    .text()
-    .trim();
+//saving tasks into localStorage
+$(".saveBtn").on("click", function() {
 
-  var textInput = $("<textarea>")
-    .addClass("form-control")
-    .val(text);
+  var message = $(this).siblings(".description").val();
+  var time = $(this).parent().attr("id");
 
-  $(this).replaceWith(textInput);
-  textInput.trigger("focus");
-});
+  console.log(message, time);
+
+  localStorage.setItem(time, message);
+})
+
+// retreive tasks from localStorage
+$("#9 .description").val(localStorage.getItem("9"));
+$("#10 .description").val(localStorage.getItem("10"));
+$("#11 .description").val(localStorage.getItem("11"));
+$("#12 .description").val(localStorage.getItem("12"));
+$("#1 .description").val(localStorage.getItem("1"));
+$("#2 .description").val(localStorage.getItem("2"));
+$("#3 .description").val(localStorage.getItem("3"));
+$("#4 .description").val(localStorage.getItem("4"));
+$("#5 .description").val(localStorage.getItem("5"));
 
 displayDate();
 checkTime();
