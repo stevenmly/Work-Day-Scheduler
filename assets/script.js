@@ -1,3 +1,5 @@
+var tasks = {};
+
 var checkTime = function() {
   $( ".row" ).each(function( index ) {
      var hourText = $(this).find(".hour").text();
@@ -26,7 +28,7 @@ var displayDate = function() {
 }
 
 // task text was clicked
-$(".list-group").on("click", "p", function() {
+$(".description").on("click", "div", function() {
   var text = $(this)
     .text()
     .trim();
